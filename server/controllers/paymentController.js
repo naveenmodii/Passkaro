@@ -34,11 +34,11 @@ exports.createOrder = async (req, res) => {
       key_secret: process.env.RAZORPAY_KEY_SECRET
     });
 
-    // Create Razorpay order options
+    // Create Razorpay order options (receipt must be <= 40 characters)
     const options = {
       amount: amountInPaise,
       currency: 'INR',
-      receipt: `receipt_subj_${subjectId}_${Date.now()}`
+      receipt: `rcpt_${subjectId.toString().substring(12)}_${Date.now()}`
     };
 
     const order = await razorpay.orders.create(options);
