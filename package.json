@@ -1,13 +1,24 @@
 {
   "name": "passkaro",
   "version": "1.0.0",
-  "description": "PassKaro monorepo root",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev:server": "node server/index.js",
-    "dev:client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\""
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naveenmodii/Passkaro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/naveenmodii/Passkaro/issues"
+  },
+  "homepage": "https://github.com/naveenmodii/Passkaro#readme",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^10.0.3"
   }
 }

@@ -19,6 +19,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Auth Routes
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
+
 // Connect to MongoDB & Start Server
 const MONGO_URI = process.env.MONGO_URI;
 
