@@ -33,6 +33,10 @@ app.use('/api/admin', adminRoutes);
 const paymentRoutes = require('./routes/paymentRoutes');
 app.use('/api/payments', paymentRoutes);
 
+// Video Delivery Routes
+const videoRoutes = require('./routes/videoRoutes');
+app.use('/api/videos', videoRoutes);
+
 // Connect to MongoDB & Start Server
 const MONGO_URI = process.env.MONGO_URI;
 
