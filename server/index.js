@@ -23,6 +23,12 @@ app.get('/api/health', (req, res) => {
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
+// Content & Admin Routes
+const contentRoutes = require('./routes/contentRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/api/content', contentRoutes);
+app.use('/api/admin', adminRoutes);
+
 // Connect to MongoDB & Start Server
 const MONGO_URI = process.env.MONGO_URI;
 
