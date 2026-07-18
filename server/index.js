@@ -29,6 +29,10 @@ const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/content', contentRoutes);
 app.use('/api/admin', adminRoutes);
 
+// Payment Routes
+const paymentRoutes = require('./routes/paymentRoutes');
+app.use('/api/payments', paymentRoutes);
+
 // Connect to MongoDB & Start Server
 const MONGO_URI = process.env.MONGO_URI;
 
