@@ -135,10 +135,10 @@ const SubjectPage = () => {
   if (error) {
     return (
       <div className="min-h-[calc(100vh-4rem)] bg-zinc-50 text-zinc-900 flex items-center justify-center p-4">
-        <div className="bg-white border border-zinc-200 p-8 rounded-2xl max-w-md text-center shadow-sm">
+        <div className="bg-white border border-zinc-300 p-8 rounded-2xl max-w-md text-center shadow-sm">
           <h2 className="text-xl font-bold text-red-600 mb-2">Error</h2>
-          <p className="text-zinc-500 text-sm mb-4 font-medium">{error}</p>
-          <button onClick={() => navigate(-1)} className="text-xs font-bold bg-zinc-900 text-white px-4 py-2 rounded-xl hover:bg-black transition-all">
+          <p className="text-zinc-600 text-sm mb-4 font-semibold">{error}</p>
+          <button onClick={() => navigate(-1)} className="text-xs font-bold bg-zinc-900 text-white px-4.5 py-2.5 rounded-xl hover:bg-black transition-all shadow-sm">
             ← Go Back
           </button>
         </div>
@@ -154,15 +154,15 @@ const SubjectPage = () => {
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* Top Bar / Buy Banner */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white border border-zinc-200 p-6 sm:p-8 rounded-2xl shadow-2xs gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white border border-zinc-300 p-6 sm:p-8 rounded-2xl shadow-2xs gap-4">
           <div>
-            <span className="text-xs font-mono font-bold text-zinc-700 uppercase tracking-wider bg-zinc-100 border border-zinc-200 px-3 py-1 rounded-full">
+            <span className="text-xs font-mono font-bold text-zinc-800 uppercase tracking-wider bg-zinc-100 border border-zinc-300 px-3 py-1 rounded-full">
               Exam Crash Course
             </span>
             <h1 className="text-2xl sm:text-3xl font-extrabold mt-2 text-zinc-900 tracking-tight">
               Chapters & Video Lectures
             </h1>
-            <p className="text-zinc-500 text-sm mt-1 font-medium">
+            <p className="text-zinc-600 text-sm mt-1 font-medium">
               Watch fixed-length recorded videos tailored to your syllabus.
             </p>
           </div>
@@ -171,24 +171,23 @@ const SubjectPage = () => {
             <button
               onClick={handleBuyAccess}
               disabled={paymentLoading}
-              className="bg-zinc-900 hover:bg-black disabled:opacity-50 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-[0.98] shrink-0 flex items-center justify-center space-x-2"
+              className="bg-zinc-900 hover:bg-black disabled:opacity-50 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-[0.98] shrink-0 flex items-center justify-center space-x-2 ring-1 ring-zinc-900/10"
             >
-              <span>🔒 Buy Full Access</span>
+              <span>Buy Full Access</span>
             </button>
           )}
         </div>
 
         {/* Video Player Section (Rendered on demand when a video is clicked) */}
         {activeVideo && (
-          <div className="bg-white border border-zinc-300 p-5 rounded-2xl shadow-xl space-y-4 ring-1 ring-zinc-900/5">
+          <div className="bg-white border border-zinc-300 p-5 rounded-2xl shadow-xl space-y-4 ring-1 ring-zinc-900/10">
             <div className="flex items-center justify-between border-b border-zinc-200 pb-3">
               <h2 className="font-bold text-base text-zinc-900 flex items-center space-x-2">
-                <span>▶</span>
                 <span>Playing: {activeVideo.title}</span>
               </h2>
               <button
                 onClick={() => setActiveVideo(null)}
-                className="text-zinc-500 hover:text-zinc-900 text-xs font-semibold px-3 py-1 bg-zinc-100 hover:bg-zinc-200 rounded-lg transition-colors"
+                className="text-zinc-700 hover:text-zinc-900 text-xs font-bold px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-300 rounded-lg transition-colors"
               >
                 Close Player ✕
               </button>
@@ -210,26 +209,26 @@ const SubjectPage = () => {
 
         {/* Chapters Accordion / List */}
         {chapters.length === 0 ? (
-          <div className="bg-white border border-zinc-200 rounded-2xl p-10 text-center text-zinc-500 font-medium">
+          <div className="bg-white border border-zinc-300 rounded-2xl p-10 text-center text-zinc-600 font-semibold shadow-2xs">
             No chapters uploaded for this subject yet.
           </div>
         ) : (
           <div className="space-y-6">
             {chapters.map((chapter) => (
-              <div key={chapter._id} className="bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-2xs">
-                <div className="bg-zinc-100/70 px-6 py-4 border-b border-zinc-200 flex items-center justify-between">
+              <div key={chapter._id} className="bg-white border border-zinc-300 rounded-2xl overflow-hidden shadow-2xs">
+                <div className="bg-zinc-100/80 px-6 py-4 border-b border-zinc-300 flex items-center justify-between">
                   <h3 className="font-bold text-base text-zinc-900 flex items-center space-x-2">
                     <span className="text-xs bg-zinc-900 text-white font-mono font-bold px-2 py-0.5 rounded">
                       Ch #{chapter.order}
                     </span>
                     <span>{chapter.title}</span>
                   </h3>
-                  <span className="text-xs font-medium text-zinc-500">
+                  <span className="text-xs font-bold text-zinc-600">
                     {chapter.videos?.length || 0} videos
                   </span>
                 </div>
 
-                <div className="divide-y divide-zinc-100">
+                <div className="divide-y divide-zinc-200">
                   {chapter.videos && chapter.videos.length > 0 ? (
                     chapter.videos.map((video) => (
                       <div
@@ -237,16 +236,16 @@ const SubjectPage = () => {
                         className="px-6 py-4 flex items-center justify-between hover:bg-zinc-50 transition-colors"
                       >
                         <div className="flex items-center space-x-3">
-                          <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-700 text-xs font-bold shrink-0">
-                            {video.unlocked ? '▶' : '🔒'}
+                          <div className="w-7 h-7 rounded-full bg-zinc-900 text-white flex items-center justify-center text-[10px] font-bold shrink-0 shadow-2xs">
+                            {video.unlocked ? '✓' : '•'}
                           </div>
                           <div>
-                            <div className="font-semibold text-sm text-zinc-900">
+                            <div className="font-bold text-sm text-zinc-900">
                               {video.title}
                             </div>
                             {video.durationMinutes && (
-                              <div className="text-xs text-zinc-500 font-medium">
-                                ⏱ {video.durationMinutes} mins
+                              <div className="text-xs text-zinc-600 font-medium">
+                                {video.durationMinutes} mins
                               </div>
                             )}
                           </div>
@@ -258,7 +257,7 @@ const SubjectPage = () => {
                             <button
                               onClick={() => handlePlayVideo(video)}
                               disabled={loadingVideoId === video._id}
-                              className="bg-zinc-900 hover:bg-black text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-2xs active:scale-95"
+                              className="bg-zinc-900 hover:bg-black text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-sm active:scale-95"
                             >
                               {loadingVideoId === video._id ? (
                                 <span>Loading...</span>
@@ -270,7 +269,7 @@ const SubjectPage = () => {
                             <button
                               onClick={handleBuyAccess}
                               disabled={paymentLoading}
-                              className="bg-zinc-100 hover:bg-zinc-200 border border-zinc-300 text-zinc-900 text-xs font-semibold px-4 py-2 rounded-xl transition-all active:scale-95"
+                              className="bg-white hover:bg-zinc-100 border border-zinc-300 text-zinc-900 text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-2xs active:scale-95"
                             >
                               <span>Buy Access</span>
                             </button>
@@ -279,7 +278,7 @@ const SubjectPage = () => {
                       </div>
                     ))
                   ) : (
-                    <div className="px-6 py-4 text-xs text-zinc-400 italic">
+                    <div className="px-6 py-4 text-xs text-zinc-500 italic">
                       No video lectures uploaded in this chapter yet.
                     </div>
                   )}

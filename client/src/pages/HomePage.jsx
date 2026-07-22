@@ -30,19 +30,19 @@ const HomePage = () => {
       <div className="max-w-3xl w-full text-center space-y-6">
         
         {/* Badge */}
-        <div className="inline-flex items-center space-x-2 bg-white border border-zinc-200 text-zinc-800 px-3.5 py-1.5 rounded-full text-xs font-mono font-medium shadow-2xs">
-          <span>⚡ Exam Night Savior</span>
+        <div className="inline-flex items-center space-x-2 bg-zinc-200/70 border border-zinc-300 text-zinc-900 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-wide uppercase shadow-2xs">
+          <span>Your Last Minute Savior</span>
         </div>
 
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-zinc-900 leading-[1.1]">
           Pass your semester exams with{' '}
-          <span className="bg-zinc-900 text-white px-3 py-1 rounded-xl inline-block mt-1 sm:mt-0 shadow-sm">
+          <span className="bg-zinc-900 text-white px-3.5 py-1 rounded-xl inline-block mt-1 sm:mt-0 shadow-md">
             targeted videos
           </span>
         </h1>
 
-        <p className="text-zinc-500 text-lg sm:text-xl max-w-xl mx-auto font-normal leading-relaxed">
+        <p className="text-zinc-600 text-lg sm:text-xl max-w-xl mx-auto font-medium leading-relaxed">
           Short, exam-focused crash courses mapped directly to your college's official syllabus.
         </p>
 
@@ -56,11 +56,11 @@ const HomePage = () => {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setTimeout(() => setIsFocused(false), 200)}
               placeholder="Search your college (e.g. BIT Mesra)..."
-              className="w-full bg-white border border-zinc-300 text-zinc-900 px-5 py-4 pl-12 rounded-2xl shadow-sm hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent text-base placeholder-zinc-400 transition-all font-medium"
+              className="w-full bg-white border border-zinc-300 text-zinc-900 px-5 py-4 pl-12 rounded-2xl shadow-sm hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent text-base placeholder-zinc-400 transition-all font-semibold"
             />
             {/* Search Icon */}
             <svg
-              className="w-5 h-5 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2"
+              className="w-5 h-5 text-zinc-500 absolute left-4 top-1/2 -translate-y-1/2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -68,7 +68,7 @@ const HomePage = () => {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
@@ -82,31 +82,31 @@ const HomePage = () => {
 
           {/* Search Results Dropdown */}
           {isFocused && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-zinc-200 rounded-2xl shadow-2xl overflow-hidden z-30 max-h-80 overflow-y-auto divide-y divide-zinc-100">
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-zinc-300 rounded-2xl shadow-2xl overflow-hidden z-30 max-h-80 overflow-y-auto divide-y divide-zinc-100">
               {colleges.length > 0 ? (
                 colleges.map((college) => (
                   <button
                     key={college._id}
                     onMouseDown={() => navigate(`/college/${college.slug}`)}
-                    className="w-full text-left px-5 py-4 hover:bg-zinc-50 transition-colors flex justify-between items-center group"
+                    className="w-full text-left px-5 py-4 hover:bg-zinc-100/70 transition-colors flex justify-between items-center group"
                   >
                     <div>
                       <div className="font-bold text-zinc-900 group-hover:text-black transition-colors text-base">
                         {college.name}
                       </div>
                       {college.city && (
-                        <div className="text-xs text-zinc-500 mt-0.5">
-                          📍 {college.city} {college.affiliatingUniversity ? `• ${college.affiliatingUniversity}` : ''}
+                        <div className="text-xs font-medium text-zinc-500 mt-0.5">
+                          {college.city} {college.affiliatingUniversity ? `• ${college.affiliatingUniversity}` : ''}
                         </div>
                       )}
                     </div>
-                    <span className="text-xs font-bold text-zinc-900 bg-zinc-100 group-hover:bg-zinc-900 group-hover:text-white px-3 py-1.5 rounded-lg transition-all shadow-2xs">
+                    <span className="text-xs font-bold text-white bg-zinc-900 group-hover:bg-black px-3.5 py-1.5 rounded-xl transition-all shadow-sm">
                       Select →
                     </span>
                   </button>
                 ))
               ) : (
-                <div className="px-5 py-6 text-zinc-500 text-sm text-center font-medium">
+                <div className="px-5 py-6 text-zinc-500 text-sm text-center font-semibold">
                   {loading ? 'Searching...' : 'No colleges found'}
                 </div>
               )}
@@ -114,18 +114,18 @@ const HomePage = () => {
           )}
         </div>
 
-        {/* Trust features */}
-        <div className="pt-8 flex flex-wrap justify-center items-center gap-6 text-xs font-semibold text-zinc-500">
-          <span className="flex items-center space-x-1.5">
-            <span className="text-zinc-900 font-bold">✓</span>
+        {/* Trust features without emojis */}
+        <div className="pt-8 flex flex-wrap justify-center items-center gap-6 text-xs font-bold text-zinc-700">
+          <span className="flex items-center space-x-1.5 bg-white border border-zinc-200 px-3 py-1.5 rounded-lg shadow-2xs">
+            <span className="text-zinc-900">•</span>
             <span>Syllabus Aligned</span>
           </span>
-          <span className="flex items-center space-x-1.5">
-            <span className="text-zinc-900 font-bold">✓</span>
+          <span className="flex items-center space-x-1.5 bg-white border border-zinc-200 px-3 py-1.5 rounded-lg shadow-2xs">
+            <span className="text-zinc-900">•</span>
             <span>Instant Access</span>
           </span>
-          <span className="flex items-center space-x-1.5">
-            <span className="text-zinc-900 font-bold">✓</span>
+          <span className="flex items-center space-x-1.5 bg-white border border-zinc-200 px-3 py-1.5 rounded-lg shadow-2xs">
+            <span className="text-zinc-900">•</span>
             <span>Fixed Length Lectures</span>
           </span>
         </div>
