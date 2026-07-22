@@ -13,7 +13,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-slate-950 font-sans text-slate-100 flex flex-col">
+        <div className="min-h-screen bg-zinc-50 text-zinc-900 selection:bg-zinc-900 selection:text-white font-sans flex flex-col antialiased">
           <Navbar />
           <main className="flex-1">
             <Routes>
@@ -31,9 +31,11 @@ function App() {
           toastOptions={{
             duration: 4000,
             style: {
-              background: '#0f172a',
+              background: '#18181b',
               color: '#fff',
-              border: '1px solid #1e293b'
+              borderRadius: '0.75rem',
+              fontSize: '0.875rem',
+              fontWeight: '500'
             }
           }}
         />

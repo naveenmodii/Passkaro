@@ -33,24 +33,24 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-slate-950 text-white flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
+    <div className="min-h-[calc(100vh-4rem)] bg-zinc-50 text-zinc-900 flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-white border border-zinc-200 p-8 rounded-2xl shadow-sm space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-extrabold tracking-tight">Log In</h1>
-          <p className="text-slate-400 text-sm">
+          <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900">Log In</h1>
+          <p className="text-zinc-500 text-sm font-medium">
             Access your unlocked exam prep courses
           </p>
         </div>
 
         {serverError && (
-          <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm p-3.5 rounded-xl">
+          <div className="bg-red-50 border border-red-200 text-red-700 text-sm p-3.5 rounded-xl font-medium">
             {serverError}
           </div>
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
               Email Address
             </label>
             <input
@@ -63,15 +63,15 @@ const LoginPage = () => {
                 }
               })}
               placeholder="you@college.edu"
-              className="w-full bg-slate-950 border border-slate-800 text-white px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+              className="w-full bg-zinc-50 border border-zinc-200 text-zinc-900 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:bg-white text-sm transition-all placeholder-zinc-400 font-medium"
             />
             {errors.email && (
-              <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
+              <p className="text-red-600 text-xs mt-1 font-medium">{errors.email.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
               Password
             </label>
             <input
@@ -84,25 +84,25 @@ const LoginPage = () => {
                 }
               })}
               placeholder="••••••••"
-              className="w-full bg-slate-950 border border-slate-800 text-white px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+              className="w-full bg-zinc-50 border border-zinc-200 text-zinc-900 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:bg-white text-sm transition-all placeholder-zinc-400 font-medium"
             />
             {errors.password && (
-              <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>
+              <p className="text-red-600 text-xs mt-1 font-medium">{errors.password.message}</p>
             )}
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-600/20 transition-all duration-200 mt-2"
+            className="w-full bg-zinc-900 hover:bg-black disabled:opacity-50 text-white font-bold py-3.5 rounded-xl shadow-sm transition-all active:scale-[0.98] mt-2"
           >
             {loading ? 'Logging in...' : 'Log In'}
           </button>
         </form>
 
-        <div className="text-center text-xs text-slate-400">
+        <div className="text-center text-xs text-zinc-500 font-medium">
           Don't have an account?{' '}
-          <Link to="/signup" className="text-indigo-400 font-semibold hover:underline">
+          <Link to="/signup" className="text-zinc-900 font-bold hover:underline">
             Sign Up
           </Link>
         </div>
