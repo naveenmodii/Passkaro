@@ -80,26 +80,31 @@ const videoUpdateValidation = [
 // ==========================================
 
 // Colleges
+router.get('/colleges', adminController.getColleges);
 router.post('/colleges', collegeCreateValidation, adminController.createCollege);
 router.put('/colleges/:id', collegeUpdateValidation, adminController.updateCollege);
 router.delete('/colleges/:id', adminController.deleteCollege);
 
 // Branches
+router.get('/branches', adminController.getBranches);
 router.post('/branches', branchCreateValidation, adminController.createBranch);
 router.put('/branches/:id', branchUpdateValidation, adminController.updateBranch);
 router.delete('/branches/:id', adminController.deleteBranch);
 
 // Subjects
+router.get('/subjects', adminController.getSubjects);
 router.post('/subjects', subjectCreateValidation, adminController.createSubject);
 router.put('/subjects/:id', subjectUpdateValidation, adminController.updateSubject);
 router.delete('/subjects/:id', adminController.deleteSubject);
 
 // Chapters
+router.get('/chapters', adminController.getChapters);
 router.post('/chapters', chapterCreateValidation, adminController.createChapter);
 router.put('/chapters/:id', chapterUpdateValidation, adminController.updateChapter);
 router.delete('/chapters/:id', adminController.deleteChapter);
 
 // Videos
+router.get('/videos', adminController.getVideos);
 router.post('/videos', videoCreateValidation, adminController.createVideo);
 router.put('/videos/:id', videoUpdateValidation, adminController.updateVideo);
 router.delete('/videos/:id', adminController.deleteVideo);

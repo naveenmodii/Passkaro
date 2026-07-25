@@ -24,8 +24,12 @@ const LoginPage = () => {
       console.error('Login error:', err);
       if (err.response?.data?.errors) {
         setServerError(err.response.data.errors.map(e => e.msg).join(', '));
+      } else if (err.response?.data?.message) {
+        setServerError(err.response.data.message);
+      } else if (err.response?.data?.error) {
+        setServerError(err.response.data.error);
       } else {
-        setServerError(err.response?.data?.message || 'Login failed. Please try again.');
+        setServerError('Network error. Unable to connect to backend server at http://localhost:3000');
       }
     } finally {
       setLoading(false);

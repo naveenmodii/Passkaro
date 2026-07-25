@@ -33,6 +33,15 @@ const Navbar = () => {
               Find College
             </Link>
 
+            {user?.role === 'admin' && (
+              <Link
+                to="/admin"
+                className="text-amber-700 hover:text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-3 py-1 rounded-xl text-sm font-bold transition-all"
+              >
+                Admin Panel
+              </Link>
+            )}
+
             {user ? (
               <div className="flex items-center space-x-3">
                 <span className="text-xs text-zinc-900 font-bold bg-white px-3 py-1.5 rounded-full border border-zinc-300 shadow-2xs flex items-center space-x-1.5">

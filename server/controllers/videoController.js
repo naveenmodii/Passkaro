@@ -46,7 +46,7 @@ exports.getPlayUrl = async (req, res) => {
       return res.status(401).json({ error: 'User not found' });
     }
 
-    const hasUnlocked = user.unlockedSubjects.some(
+    const hasUnlocked = user.role === 'admin' || user.unlockedSubjects.some(
       (subId) => subId.toString() === subject._id.toString()
     );
 
@@ -76,8 +76,9 @@ exports.getPlayUrl = async (req, res) => {
       .digest('hex');
 
     const playUrl = `https://${BUNNY_CDN_HOSTNAME}/${BUNNY_LIBRARY_ID}/${video.bunnyVideoId}/play.m3u8?token=${token}&expires=${expiresAt}`;
+    const embedUrl = `https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${video.bunnyVideoId}?token=${token}&expires=${expiresAt}&autoplay=true`;
 
-    res.json({ playUrl });
+    res.json({ playUrl, embedUrl });
   } catch (error) {
     console.error('getPlayUrl error:', error);
     res.status(500).json({ error: 'Internal server error' });

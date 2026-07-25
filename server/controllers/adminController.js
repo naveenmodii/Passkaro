@@ -359,3 +359,78 @@ exports.deleteVideo = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+// ==========================================
+// ADMIN GET ALL RECORDS
+// ==========================================
+
+exports.getColleges = async (req, res) => {
+  try {
+    const colleges = await College.find().sort({ createdAt: -1 });
+    res.json(colleges);
+  } catch (error) {
+    console.error('admin getColleges error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.getBranches = async (req, res) => {
+  try {
+    const branches = await Branch.find()
+      .populate('college', 'name slug')
+      .sort({ createdAt: -1 });
+    res.json(branches);
+  } catch (error) {
+    console.error('admin getBranches error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.getSubjects = async (req, res) => {
+  try {
+    const subjects = await Subject.find()
+      .populate({
+        path: 'branch',
+        populate: { path: 'college', select: 'name' }
+      })
+      .sort({ createdAt: -1 });
+    res.json(subjects);
+  } catch (error) {
+    console.error('admin getSubjects error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.getChapters = async (req, res) => {
+  try {
+    const chapters = await Chapter.find()
+      .populate({
+        path: 'subject',
+        populate: {
+          path: 'branch',
+          populate: { path: 'college', select: 'name' }
+        }
+      })
+      .sort({ createdAt: -1 });
+    res.json(chapters);
+  } catch (error) {
+    console.error('admin getChapters error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.getVideos = async (req, res) => {
+  try {
+    const videos = await Video.find()
+      .populate({
+        path: 'chapter',
+        populate: { path: 'subject', select: 'name' }
+      })
+      .sort({ createdAt: -1 });
+    res.json(videos);
+  } catch (error) {
+    console.error('admin getVideos error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
