@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data.user);
     } catch (err) {
       setUser(null);
+      localStorage.removeItem('token');
     } finally {
       setLoading(false);
     }
@@ -29,6 +30,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Logout error:', err);
     } finally {
       setUser(null);
+      localStorage.removeItem('token');
     }
   };
 

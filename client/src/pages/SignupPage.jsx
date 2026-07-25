@@ -21,6 +21,9 @@ const SignupPage = () => {
         email: data.email,
         password: data.password
       });
+      if (res.data.token) {
+        localStorage.setItem('token', res.data.token);
+      }
       setUser(res.data.user);
       toast.success('Account created successfully!');
       navigate('/');

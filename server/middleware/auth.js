@@ -16,7 +16,11 @@ const parseCookies = (cookieHeader) => {
 const requireAuth = (req, res, next) => {
   try {
     const cookies = parseCookies(req.headers.cookie);
-    const token = cookies.token;
+    let token = cookies.token;
+
+    if (!token && req.headers.authorization) {
+      token = req.headers.authorization.replace('Bearer ', '');
+    }
 
     if (!token) {
       return res.status(401).json({ message: 'Authentication required. No token provided.' });

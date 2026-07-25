@@ -67,11 +67,15 @@ exports.getChaptersAndVideos = async (req, res) => {
   try {
     const { subjectId } = req.params;
 
-    // Optional authentication check via cookies
+    // Optional authentication check via cookies or Authorization header
     let isUnlocked = false;
     try {
       const cookies = parseCookies(req.headers.cookie);
-      const token = cookies.token;
+      let token = cookies.token;
+      if (!token && req.headers.authorization) {
+        token = req.headers.authorization.replace('Bearer ', '');
+      }
+
       if (token) {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(decoded.userId);

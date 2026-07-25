@@ -11,10 +11,12 @@ const sendTokenCookie = (res, user) => {
     { expiresIn: '7d' }
   );
 
+  const isProduction = process.env.NODE_ENV === 'production' || (process.env.CLIENT_URL && process.env.CLIENT_URL.includes('https://'));
+
   res.cookie('token', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
   });
 
@@ -54,7 +56,7 @@ exports.signup = async (req, res) => {
     await newUser.save();
 
     // Set JWT in httpOnly cookie
-    sendTokenCookie(res, newUser);
+    const token = sendTokenCookie(res, newUser);
 
     // Return user without passwordHash
     const userResponse = newUser.toObject();
@@ -62,6 +64,7 @@ exports.signup = async (req, res) => {
 
     res.status(201).json({
       message: 'Registration successful',
+      token,
       user: userResponse
     });
   } catch (error) {
@@ -95,7 +98,7 @@ exports.login = async (req, res) => {
     }
 
     // Set JWT in httpOnly cookie
-    sendTokenCookie(res, user);
+    const token = sendTokenCookie(res, user);
 
     // Return user without passwordHash
     const userResponse = user.toObject();
@@ -103,6 +106,7 @@ exports.login = async (req, res) => {
 
     res.json({
       message: 'Login successful',
+      token,
       user: userResponse
     });
   } catch (error) {
@@ -114,10 +118,11 @@ exports.login = async (req, res) => {
 // POST /api/auth/logout
 exports.logout = async (req, res) => {
   try {
+    const isProduction = process.env.NODE_ENV === 'production' || (process.env.CLIENT_URL && process.env.CLIENT_URL.includes('https://'));
     res.clearCookie('token', {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax'
+      secure: isProduction,
+      sameSite: isProduction ? 'none' : 'lax'
     });
     res.json({ message: 'Logged out successfully' });
   } catch (error) {

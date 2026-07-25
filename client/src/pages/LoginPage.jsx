@@ -17,6 +17,9 @@ const LoginPage = () => {
     setServerError('');
     try {
       const res = await api.post('/api/auth/login', data);
+      if (res.data.token) {
+        localStorage.setItem('token', res.data.token);
+      }
       setUser(res.data.user);
       toast.success('Welcome back!');
       navigate('/');
