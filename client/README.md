@@ -1,16 +1,54 @@
-# React + Vite
+# PassKaro Frontend — Deployment Guide (Vercel)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This directory contains the React 19 + Vite + Tailwind CSS frontend application for PassKaro.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Deploying to Vercel
 
-## React Compiler
+### 1. Import Project to Vercel
+1. Log in to [Vercel Dashboard](https://vercel.com/dashboard).
+2. Click **Add New...** $\rightarrow$ **Project**.
+3. Import your GitHub repository (`naveenmodii/Passkaro`).
+4. Set the **Root Directory** to `client` (Click **Edit** next to Root Directory and select `client`).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+### 2. Build & Development Settings
+Vercel automatically detects Vite projects. Confirm the following settings:
+- **Framework Preset**: `Vite`
+- **Build Command**: 
+  ```bash
+  npm run build
+  ```
+- **Output Directory**: 
+  ```
+  dist
+  ```
+- **Install Command**: 
+  ```bash
+  npm install
+  ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+---
+
+### 3. Required Environment Variable
+Under the **Environment Variables** section in Vercel, add the following key:
+
+| Variable Name | Value | Description |
+| :--- | :--- | :--- |
+| `VITE_API_URL` | `https://<your-render-backend-name>.onrender.com` | Deployed backend URL (without trailing `/`) |
+
+> [!IMPORTANT]
+> - Ensure the variable name is **`VITE_API_URL`** (case-sensitive with the `VITE_` prefix).
+> - After setting environment variables, click **Deploy** (or trigger a fresh redeploy if already imported).
+
+---
+
+## Local Development
+To run the client locally:
+```bash
+npm install
+npm run dev
+```
+Local dev server runs at `http://localhost:5173`.
