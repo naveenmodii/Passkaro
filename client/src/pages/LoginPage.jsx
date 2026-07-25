@@ -29,7 +29,7 @@ const LoginPage = () => {
       } else if (err.response?.data?.error) {
         setServerError(err.response.data.error);
       } else {
-        setServerError('Network error. Unable to connect to backend server at http://localhost:3000');
+        setServerError('Network error. Unable to connect to backend server. Please check your network connection.');
       }
     } finally {
       setLoading(false);
